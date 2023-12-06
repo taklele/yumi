@@ -1,29 +1,35 @@
-import fs from 'fs';
-import path from 'path';
+import { kv } from '@vercel/kv';
 
-export default function handler(req, res) {
+export default async function handler(req, res) {
   if (req.method === 'POST') {
-    const query = req.body.query;
-    const filePath = path.resolve('./', 'queries.json');
+    try {
+      const { query } = req.body;
 
-    fs.readFile(filePath, (err, data) => {
-      if (err) {
-        res.status(500).json({ message: 'Error reading file' });
-      } else {
-        let queries = JSON.parse(data);
-        queries.unshift(query); // Add new query to the beginning
-        queries = queries.slice(0, 20); // Keep only latest 20 queries
-
-        fs.writeFile(filePath, JSON.stringify(queries), (err) => {
-          if (err) {
-            res.status(500).json({ message: 'Error writing file' });
-          } else {
-            res.status(200).json({ message: 'Query added successfully' });
-          }
-        });
+      // 获取当前的查询列表
+      let queries = await kv.get('queries');
+      if (!queries) {
+        queries = [];
       }
-    });
+
+      // 将新域名添加到数组的开头
+      queries.unshift(query);
+
+      // 如果数组长度超过限定值，移除末尾元素
+      if (queries.length > 20) {
+        queries.pop();
+      }
+
+      // 更新KV中的queries
+      await kv.set('queries', queries);
+
+      res.status(200).json({ message: 'Query added successfully' });
+    } catch (error) {
+      console.error('Error in adding query:', error);
+      res.status(500).json({ error: 'Internal Server Error' });
+    }
   } else {
-    res.status(405).json({ message: 'Method not allowed' });
+    // 处理非POST请求
+    res.setHeader('Allow', ['POST']);
+    res.status(405).end(`Method ${req.method} Not Allowed`);
   }
 }

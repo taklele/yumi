@@ -1,19 +1,24 @@
-import fs from 'fs';
-import path from 'path';
+import { kv } from '@vercel/kv';
 
-export default function handler(req, res) {
+export default async function handler(req, res) {
   if (req.method === 'GET') {
-    const filePath = path.resolve('./', 'queries.json');
+    try {
+      // 从KV获取queries
+      const queries = await kv.get('queries');
 
-    fs.readFile(filePath, (err, data) => {
-      if (err) {
-        res.status(500).json({ message: 'Error reading file' });
-      } else {
-        const queries = JSON.parse(data);
+      if (queries) {
         res.status(200).json(queries);
+      } else {
+        // 如果没有找到queries，则返回空数组
+        res.status(200).json([]);
       }
-    });
+    } catch (error) {
+      console.error('Error fetching recent queries:', error);
+      res.status(500).json({ error: 'Internal Server Error' });
+    }
   } else {
-    res.status(405).json({ message: 'Method not allowed' });
+    // 处理非GET请求
+    res.setHeader('Allow', ['GET']);
+    res.status(405).end(`Method ${req.method} Not Allowed`);
   }
 }
