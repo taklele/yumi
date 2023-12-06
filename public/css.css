@@ -1,0 +1,234 @@
+/* Basic reset for styling */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f4f4f4;
+  }
+  
+  header {
+    background: #333;
+    color: #fff;
+    padding: 1rem 0;
+    text-align: center;
+  }
+  
+  header img#logo {
+    display: block;
+    margin: 0 auto;
+  }
+  
+  header h1 {
+    margin: 0;
+  }
+  
+  main {
+    padding: 20px;
+  }
+  
+  #search-form {
+    max-width: 500px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  #search-form input,
+  #search-form select,
+  #search-form button {
+    padding: 10px;
+    margin-bottom: 10px;
+    width: 100%;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+  
+  #search-form button {
+    background: #5cb85c;
+    color: white;
+    cursor: pointer;
+    border: none;
+  }
+  
+  #search-form button:hover {
+    background: #4cae4c;
+  }
+  
+  section#instructions {
+    margin: 20px 0;
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  #domain-list h2 {
+    background: #dff0d8;
+    color: #3c763d;
+    padding: 10px;
+    margin-bottom: 15px;
+  }
+  
+  #domain-list table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  #domain-list table, 
+  #domain-list th, 
+  #domain-list td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+  }
+  
+  #domain-list th {
+    background-color: #f7f7f7;
+  }
+  
+  footer {
+    text-align: center;
+    padding: 20px;
+    background: #333;
+    color: #fff;
+  }
+  
+  .domain-table {
+    max-width: 600px;
+    margin: auto;
+    border: 1px solid #ffa07a;
+    border-collapse: collapse;
+    text-align: center;
+  }
+  
+  .domain-header {
+    font-size: 18px;
+    color: #333;
+    padding: 16px;
+    border-bottom: 1px solid #ffa07a;
+    background-color: #fff8f0;
+  }
+  
+  .domain-row {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .domain-cell {
+    flex: 1;
+    padding: 8px 16px;
+    border-right: 1px solid #ffa07a;
+    background-color: #fff;
+  }
+  
+  /* Remove right border from last cell */
+  .domain-cell:last-child {
+    border-right: none;
+  }
+  .domain-info-container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #000;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  .domain-info-header, .domain-whois-header {
+    font-size: 18px;
+    margin-bottom: 10px;
+    font-weight: bold;
+  }
+  
+  .domain-info-list {
+    margin-bottom: 20px;
+  }
+  
+  .domain-suggestion {
+    margin-bottom: 5px;
+  }
+  
+  .domain-whois-content {
+    min-height: 150px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    background-color: #f9f9f9;
+    white-space: pre-wrap;
+  }
+  .recent-queries {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 两列布局 */
+    gap: 10px; /* 列与列之间的间隔 */
+    list-style: none; /* 移除默认的列表样式 */
+    padding: 0; /* 移除默认的 padding */
+  }
+  
+  .recent-queries li {
+    background-color: #f0f0f0; /* 背景色 */
+    border: 1px solid #ddd; /* 边框 */
+    padding: 8px 12px; /* 内边距 */
+    border-radius: 5px; /* 圆角 */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 阴影效果 */
+    text-align: center; /* 文字居中 */
+  }
+  
+  /* 可以根据需要添加更多样式 */
+  .domain-info-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 两列布局，每列占一半宽度 */
+    gap: 10px; /* 设置列与列之间的间隙 */
+    margin-top: 10px;
+  }
+  
+  .domain-info-list span {
+    display: block; /* 使 span 表现得像块级元素 */
+    background-color: #f3f4f6; /* 背景色，可根据需要调整 */
+    padding: 8px;
+    border-radius: 5px; /* 圆角 */
+    text-align: center; /* 文字居中 */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 添加一些阴影效果 */
+    transition: background-color 0.3s; /* 过渡效果使鼠标悬停时更平滑 */
+  }
+  
+  .domain-info-list span a {
+    color: #007bff; /* 链接颜色，可根据需要调整 */
+    text-decoration: none; /* 去掉下划线 */
+  }
+  
+  .domain-info-list span:hover {
+    background-color: #e2e6ea; /* 鼠标悬停时的背景色 */
+  }
+  header {
+    display: flex;
+    justify-content: center; /* 水平居中 */
+    align-items: center; /* 垂直居中 */
+    height: auto; /* 高度自动，根据内容调整 */
+  }
+  
+  .header-container {
+    display: flex;
+    justify-content: space-between; /* 项目两端对齐 */
+    align-items: center; /* 垂直居中对齐 */
+    width: 600px; /* 容器宽度 */
+    height: auto; /* 高度自动 */
+  }
+  
+  #logo {
+    flex-shrink: 0; /* 防止图像缩小 */
+    width: 100px;
+    height: 100px;
+  }
+  
+  h1 {
+    margin: 0; /* 移除 h1 的默认外边距 */
+    padding-left: 20px; /* 如果需要，为了美观可以加上一些内边距 */
+  }
+      
+    
